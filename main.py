@@ -1,5 +1,13 @@
+import sys
+
+from pyqt_class.web_stream import WebcamStream
+from pyqt_class.main_class import QtWidgets, Ui
+
+
 def main():
-    pass
+    app = QtWidgets.QApplication(sys.argv)
+    window = Ui()
+    app.exec_()
 
 
 if __name__ == '__main__':
