@@ -1,3 +1,5 @@
+import os
+
 import cv2
 from PyQt5.QtWidgets import QApplication, QLabel, QVBoxLayout, QWidget, QPushButton
 from PyQt5.QtGui import QImage, QPixmap
@@ -41,14 +43,16 @@ class WebcamStream(QWidget):
             p = convert_to_Qt_format.scaled(800, 600, aspectRatioMode=1)
             self.image_label.setPixmap(QPixmap.fromImage(p))
 
-    def snapchot_function(self, event):
+    def snapchot_function(self):
         try:
             ret, frame = self.cap.read()
+            cv2.imwrite('save_file/save_picture.jpg', frame)
         except Exception as _err:
             pass
         finally:
             self.cap.release()
-            event.accept()
+            cv2.destroyAllWindows()
+            self.close()
 
     def closeEvent(self, event):
         self.cap.release()
