@@ -1,6 +1,5 @@
 import sys
 
-from pyqt_class.web_stream import WebcamStream
 from pyqt_class.main_class import QtWidgets, Ui
 
 
