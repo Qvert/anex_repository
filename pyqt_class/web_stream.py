@@ -1,9 +1,9 @@
-import os
-
 import cv2
-from PyQt5.QtWidgets import QApplication, QLabel, QVBoxLayout, QWidget, QPushButton
+from PyQt5.QtWidgets import QApplication, QLabel, QVBoxLayout, QWidget, QPushButton, QMessageBox
 from PyQt5.QtGui import QImage, QPixmap
 from PyQt5.QtCore import QTimer
+
+from pyqt_class.window_fix import ImageWindow
 
 
 class WebcamStream(QWidget):
@@ -44,12 +44,15 @@ class WebcamStream(QWidget):
             self.image_label.setPixmap(QPixmap.fromImage(p))
 
     def snapchot_function(self):
+        path_save_file = 'save_file/save_picture.jpg'
         try:
             ret, frame = self.cap.read()
-            cv2.imwrite('save_file/save_picture.jpg', frame)
+            cv2.imwrite(path_save_file, frame)
         except Exception as _err:
-            pass
+            QMessageBox.Warning("Произошла ошибка записи, попробуйте снова")
         finally:
+            self.image_window = ImageWindow(path_file=path_save_file)
+            self.image_window.show()
             self.cap.release()
             cv2.destroyAllWindows()
             self.close()

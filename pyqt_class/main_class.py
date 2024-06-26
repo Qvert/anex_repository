@@ -8,6 +8,7 @@ class Ui(QtWidgets.QMainWindow):
     def __init__(self):
         super(Ui, self).__init__()
         uic.loadUi('design/main.ui', self)
+        self.setWindowTitle("")
         self.choice_picture.clicked.connect(self.choice_file)
         self.camera_veb.clicked.connect(self.stream_camera)
         self.show()
