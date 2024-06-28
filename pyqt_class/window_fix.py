@@ -2,7 +2,7 @@ import os
 import cv2
 from PyQt5 import uic
 from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QApplication, QLabel, QVBoxLayout, QWidget, QInputDialog, QMessageBox
+from PyQt5.QtWidgets import QWidget, QInputDialog, QMessageBox
 from PyQt5.QtGui import QPixmap, QColor, QImage
 from pyqt_class.select_chanel import SelectChanel
 
@@ -27,8 +27,9 @@ class ImageWindow(QWidget):
         self.show()
 
     def show_channels(self):
-        self.widget_with_channels = SelectChanel()
+        self.widget_with_channels = SelectChanel(path_file=self.path_file, form=self.form)
         self.widget_with_channels.show()
+        self.close()
 
     def negative_function(self):
         if self.pixmap:

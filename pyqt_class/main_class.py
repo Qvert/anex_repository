@@ -1,3 +1,5 @@
+import threading
+
 import cv2
 from PyQt5 import QtWidgets, uic
 from PyQt5.QtWidgets import QFileDialog, QMessageBox
@@ -19,7 +21,8 @@ class Ui(QtWidgets.QMainWindow):
 
     def choice_file(self):
         options = QFileDialog.Options()
-        self.file_path, _ = QFileDialog.getOpenFileName(self, "Выбрать файл", "", "File .png (*.png);;File .jpeg (*.jpeg)",
+        self.file_path, _ = QFileDialog.getOpenFileName(self, "Выбрать файл", "", "File .png (*.png);;File .jpeg ("
+                                                                                  "*.jpeg)",
                                                    options=options)
         if self.file_path != '':
             if self.file_path.endswith('jpg'):
@@ -36,12 +39,8 @@ class Ui(QtWidgets.QMainWindow):
                 "Невозможно подключиться к камере",
             )
         else:
-            self.info = QMessageBox()
-            self.info.setText("Пожалуйста, подождите")
-            self.info.show()
             self.web_stream_widget = WebcamStream()
             self.web_stream_widget.show()
-            self.info.accept()
 
     def create_example_Image_window(self, form):
         self.file_path_new += form

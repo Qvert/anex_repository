@@ -1,4 +1,5 @@
 import cv2
+import threading
 from PyQt5.QtWidgets import QApplication, QLabel, QVBoxLayout, QWidget, QPushButton, QMessageBox
 from PyQt5.QtGui import QImage, QPixmap
 from PyQt5.QtCore import QTimer
