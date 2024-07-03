@@ -36,7 +36,9 @@ class Ui(QtWidgets.QMainWindow):
             warning = QMessageBox.warning(
                 self,
                 "Внимание",
-                "Невозможно подключиться к камере",
+                "Невозможно подключиться к камере\n"
+                "Проверьте, наличие камеры.\n"
+                "Также убедитесь что у вас установлены последние драйверы на устройство",
             )
         else:
             self.web_stream_widget = WebcamStream()

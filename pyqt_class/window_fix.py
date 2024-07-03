@@ -48,7 +48,7 @@ class ImageWindow(QWidget):
         """
         self.image_cv2 = cv2.imread(self.path_file)
         if self.image_cv2 is not None:
-            sigma, ok = QInputDialog.getDouble(self, 'Gaussian Blur', 'Enter sigma value:', min=0.1, max=70)
+            sigma, ok = QInputDialog.getDouble(self, 'Gaussian Blur', 'Enter sigma value:', min=1, max=70)
             if ok:
                 blurred_image = cv2.GaussianBlur(self.image_cv2, (0, 0), sigma)
                 self.display_image(blurred_image)
@@ -69,7 +69,7 @@ class ImageWindow(QWidget):
                                                  max=self.image_cv2.shape[0])
                     if ok2:
                         image_with_circle = self.image_cv2.copy()
-                        cv2.circle(image_with_circle, (x, y), radius, (255, 0, 0), 2)
+                        cv2.circle(image_with_circle, (x, y), radius, (0, 0, 255), 2)
                         self.display_image(image_with_circle)
 
     def display_image(self, image):
